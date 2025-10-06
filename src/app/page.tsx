@@ -4,7 +4,6 @@ import { useState } from 'react';
 import SearchBar from '@/components/search/SearchBar';
 import VideoTable from '@/components/search/SearchTable';
 import { VideoData } from '@/types/search.types';
-import { colors, spacing, fontSize, fontWeight } from '@/styles/tokens';
 import { message } from '@/styles/common';
 
 export default function Home() {
@@ -40,13 +39,13 @@ export default function Home() {
   };
 
   return (
-    <div style={styles.container}>
-      <header style={styles.header}>
-        <h1 style={styles.title}>YouTube Dashboard</h1>
-        <p style={styles.subtitle}>Search YouTube videos by keyword</p>
+    <div className="min-h-screen bg-gray-100">
+      <header className="bg-white border-b border-gray-200 py-8 px-8 text-center">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">YouTube Dashboard</h1>
+        <p className="text-base text-gray-600">Search YouTube videos by keyword</p>
       </header>
 
-      <main style={styles.main}>
+      <main className="max-w-7xl mx-auto p-8">
         <SearchBar onSearch={handleSearch} loading={loading} />
 
         {error && (
@@ -60,31 +59,3 @@ export default function Home() {
     </div>
   );
 }
-
-const styles = {
-  container: {
-    minHeight: '100vh',
-    backgroundColor: colors.gray100,
-  },
-  header: {
-    backgroundColor: colors.white,
-    borderBottom: `1px solid ${colors.border}`,
-    padding: spacing['2xl'],
-    textAlign: 'center' as const,
-  },
-  title: {
-    fontSize: fontSize['3xl'],
-    fontWeight: fontWeight.bold,
-    color: colors.textPrimary,
-    marginBottom: spacing.sm,
-  },
-  subtitle: {
-    fontSize: fontSize.base,
-    color: colors.textSecondary,
-  },
-  main: {
-    maxWidth: '1400px',
-    margin: '0 auto',
-    padding: spacing['2xl'],
-  },
-};
