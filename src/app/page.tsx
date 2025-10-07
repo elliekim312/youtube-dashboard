@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import SearchBar from '@/components/search/SearchBar';
+import SearchBar, { SearchType } from '@/components/search/SearchBar';
 import VideoTable from '@/components/search/SearchTable';
 import { VideoData } from '@/types/search.types';
 import { message } from '@/styles/common';
@@ -11,13 +11,15 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSearch = async (keyword: string) => {
+  const handleSearch = async (keyword: string, searchType: SearchType, minSubscribers: number, maxSubscribers: number, minViews: number) => {
     setLoading(true);
     setError(null);
 
     try {
-      const response = await fetch(`/api/videos/search?keyword=${encodeURIComponent(keyword)}`);
-      
+      const response = await fetch(
+        `/api/videos/search?keyword=${encodeURIComponent(keyword)}&searchType=${searchType}&minSubscribers=${minSubscribers}&maxSubscribers=${maxSubscribers}&minViews=${minViews}`
+      );
+
       if (!response.ok) {
         throw new Error('Search failed.');
       }

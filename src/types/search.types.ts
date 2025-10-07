@@ -1,6 +1,12 @@
+export type SearchType = 'channel' | 'keywords' | 'all';
+
 export interface VideoSearchParams {
     keyword: string;
     maxResults?: number;
+    searchType?: SearchType;
+    minSubscribers?: number;
+    maxSubscribers?: number;
+    minViews?: number;
 }
 
 export interface VideoData {
